@@ -27,14 +27,14 @@ def connect_device():
 
 def script():
 	os.system('adb shell input tap 1381 731')
-	time.sleep(1)
+	time.sleep(3)
 	os.system('adb shell input tap 1242 453')
 	start = time.time()
 	#time.sleep(180)
 	while True:
 		os.system('adb shell screencap /sdcard/screenshot.png')
 		os.system('adb pull /sdcard/screenshot.png ./screencap/screenshot.png')
-		img = Image.open('./screenshot.png')
+		img = Image.open('./screencap/screenshot.png')
 		img = img.crop((41,643,450,770)).convert('1')
 		img.convert('L')
 		text = pytesseract.image_to_string(img,lang='chi_sim')
