@@ -27,7 +27,7 @@
 
 5. 运行游戏，使游戏界面类似于下图：
 
-   ![MuMu20190710182053](./screencap/example.png)
+   ![example](https://github.com/YokeJame/ArkNights/blob/master/ArkNights-combat-script/screencap/example.png)
 
 6. 然后就可以运行脚本，自动作战啦！
 
