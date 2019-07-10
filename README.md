@@ -9,7 +9,7 @@
 
 ## 使用方法
 
-在cmd中直接运行`ArkNights.py`即可
+在cmd中直接运行`python ArkNights.py`即可
 
 运行前，需先将运行环境设置好。设置方法如下：
 
