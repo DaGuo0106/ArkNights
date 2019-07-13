@@ -3,6 +3,7 @@ import pytesseract
 from PIL import Image
 import time
 import json
+import numpy as np
 
 pytesseract.pytesseract.tesseract_cmd = 'C://Program Files (x86)/Tesseract-OCR/tesseract.exe'
 adb_host = "127.0.0.1"
@@ -51,6 +52,26 @@ def write_json(combat_num, used_time):
 		except:
 			print("记录数据失败")
 
+# def image_convert(img):
+#     img_array = np.asarray(img)
+#     img_array.flags.writeable = True
+#     for i in range(img_array.shape[0]):
+#         for j in range(img_array.shape[1]):
+#             if(img_array[i][j] > 150):
+#                 img_array[i,j] = 255
+#             else:
+#                 img_array[i,j] = 0
+#     image = Image.fromarray(np.uint8(img_array))
+#     return image
+
+def countdown(data):
+	data = int(data)
+	for i in range(data):
+		print("剩余时间：%d"%data)
+		data = data-1
+		time.sleep(1)
+		os.system('cls')
+
 def script(combat_num):
 	combat_time = get_data(combat_num)
 
@@ -62,13 +83,14 @@ def script(combat_num):
 		pass
 	else:
 		print("脚本正在运行")
-		time.sleep(combat_time*0.9)
+		print("幸福倒计时开始！")
+		countdown(combat_time*0.9)
 	while True:
 		os.system('adb shell screencap /sdcard/screenshot.png')
 		os.system('adb pull /sdcard/screenshot.png ./screencap/screenshot.png')
 		img = Image.open('./screencap/screenshot.png')
-		img = img.crop((41,643,450,770)).convert('1')
-		img.convert('L')
+		img = img.crop((41,643,450,770)).convert('L')
+		#img = image_convert(img)
 		text = pytesseract.image_to_string(img,lang='chi_sim')
 		#print(text)
 		if(text == '行 动 结 束'):
